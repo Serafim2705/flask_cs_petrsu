@@ -1,26 +1,5 @@
 var doc_btn_ids = ["btn_report", "btn_missing_report", "btn_directive_bak", "btn_directive_mag"];
-/*  function search(a) {
-    var b = $("input[type\x3dsubmit][clicked\x3dtrue]").attr("id");
 
-    -1 === doc_btn_ids.indexOf(b) && (a.preventDefault(),
-   jQuery.ajax({
-        url: "/",
-        type: "POST",
-        dataType: "html",
-        data: jQuery("#webd_form").serialize(),
-        success: function(a) {
-            // document.getElementById("webd_result").innerHTML = a
-            //document.getElementById("webd_result").innerHTML = a
-            // $('webd_result').html(a)
-            document.getElementById("webd_result").html = a
-        },
-        error: function(a) {
-             document.getElementById("webd_result").innerHTML = "Ошибка в запросе"
-        }
-    }),
-    a.preventDefault())
-    
-} */
 // Сохранение содержимого полей HTML в sessionStorage
 function saveFields() {
     var fieldsToSave = ['inp_year', 'inp_group', 'inp_department','inp_student','inp_adviser','group_method','sort_method','sort_order']; // Здесь перечислите идентификаторы полей, которые вы хотите сохранить
