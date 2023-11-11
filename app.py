@@ -144,7 +144,7 @@ def index():
             print(str(counter)+" "+str(e.year)+" "+e.departament+" "+e.group+" "+e.title+" "+e.studentName+" "+e.tutor_name +" "+e.student)
 
         current_year = datetime.datetime.now().year
-        # current_year+=5
+
         print("Сейчас "+str(current_year))
         #TODO для 4,5,6 курса разные поля в таблицах
         #TODO помечать поздно загруженные работы
@@ -164,16 +164,10 @@ def anchor():
 @app.route('/download/<username>/<year>/<filename>')
 @login_required
 def download(filename,username,year):
-    # Сформируй путь к файлу
-    # file_path2 = os.path.join(F'storage/{username}/{year}/{filename}', filename)
     file_path = F'./storage/{username}/{year}/{filename}'
-    # print(file_path2)
-    # Проверь, существует ли файл
     if os.path.isfile(file_path):
-        # Верни файл для скачивания
         return send_file(file_path, as_attachment=False)
 
-    # Если файл не существует, верни ошибку
     return "Файл не найден"
 
 
@@ -194,10 +188,7 @@ def reg():
     available_years=Courseworks.query.filter(Courseworks.student == current_user.username)\
         .group_by(Courseworks.year).order_by(Courseworks.year.desc()).all()
     print("Для пользователя "+current_user.username+" есть записи за след. года")
-    # for e in available_years:
-    #     print(e.year)
-    # av_years = [y.__dict__ for y in available_years]
-    # print(av_years[0]["year"])
+
 
     av_years = []
     for e in available_years:
@@ -245,7 +236,7 @@ def reg():
                                        chosen_year=years)
 
         # обработка ОТПРАВИТЬ
-        #TODO ЗАМЕНИТЬ НА СЕССИИ
+
 
         _year = session.get('chosen_year')
         if _year is not None and not _year=='':
@@ -348,7 +339,7 @@ def report_unreg():
 @app.route('/upload',methods=['POST','GET'])
 @login_required
 def load():
-    #TODO проверять курс и выводить нужные поля для загрузки
+
     # TODO определять студент или препод ( для преподов пока что заглушка?)
     #todo определять учеб год
     available_years=Courseworks.query.filter(Courseworks.student == current_user.username)\
